@@ -1,0 +1,2 @@
+// Simple Pagination
+GET http://localhost:5000/users?page=2&limit=5
