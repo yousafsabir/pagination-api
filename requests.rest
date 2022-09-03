@@ -1,4 +1,2 @@
 // Simple Pagination
-GET http://localhost:5000/users?page=1&limit=5
-
-GET http://localhost:5000/posts?page=2&limit=5
+GET http://localhost:5000/dbusers?page=1&limit=5

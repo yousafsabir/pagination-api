@@ -1,6 +1,43 @@
 const express = require("express");
-
 const app = express();
+const mongoose = require("mongoose");
+const User = require("./user");
+
+// Connecting to db
+mongoose.connect("mongodb://localhost:27017/pagination");
+
+const dbPaginate = (model) => {
+    return async (req, res, next) => {
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        const results = {
+            previous: null,
+            next: null,
+            result: [],
+        };
+        // Now pagination
+        if (startIndex > 0) {
+            results.previous = page - 1;
+        }
+        if (endIndex < (await model.count())) {
+            results.next = page + 1;
+        }
+        try {
+            results.result = await model.find().limit(limit).skip(startIndex);
+        } catch (e) {
+            return res.status(200).json({ message: e.message });
+        }
+        res.paginated = results;
+
+        next();
+    };
+};
+
+app.get("/dbusers", dbPaginate(User), async (req, res) => {
+    return res.json(res.paginated);
+});
 
 // Simple Pagination
 
