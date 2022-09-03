@@ -1,8 +1,17 @@
 {
-  "name": "pagination-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/yousafsabir/pagination-api.git",
-  "author": "yousafsabir <yousafsabir430516@gmail.com>",
-  "license": "MIT"
+    "name": "pagination-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/yousafsabir/pagination-api.git",
+    "author": "yousafsabir <yousafsabir430516@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "server": "nodemon server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
 }
